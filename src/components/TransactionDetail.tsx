@@ -4,6 +4,8 @@ import type { Transaction } from '../types';
 interface TransactionDetailProps {
   transaction: Transaction;
   onClose: () => void;
+  onEdit: (transaction: Transaction) => void;
+  onDelete: (transaction: Transaction) => void;
 }
 
 function formatDateTime(iso: string): string {
@@ -16,6 +18,8 @@ function formatDateTime(iso: string): string {
 export function TransactionDetail({
   transaction,
   onClose,
+  onEdit,
+  onDelete,
 }: TransactionDetailProps) {
   return (
     <aside className="txn-detail" aria-label="Transaction detail">
@@ -51,6 +55,23 @@ export function TransactionDetail({
         <dt>ID</dt>
         <dd className="txn-detail-id">{transaction.id}</dd>
       </dl>
+
+      <div className="txn-detail-actions">
+        <button
+          type="button"
+          className="button button--danger"
+          onClick={() => onDelete(transaction)}
+        >
+          Delete
+        </button>
+        <button
+          type="button"
+          className="button button--warning"
+          onClick={() => onEdit(transaction)}
+        >
+          Edit
+        </button>
+      </div>
     </aside>
   );
 }

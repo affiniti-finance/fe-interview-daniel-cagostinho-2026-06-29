@@ -37,6 +37,7 @@ export function TransactionRow({
       }}
     >
       <td className="txn-description">{transaction.description}</td>
+      <td className="txn-type">{transaction.type}</td>
       <td>
         <span className={`badge badge--${transaction.status}`}>
           {transaction.status}
